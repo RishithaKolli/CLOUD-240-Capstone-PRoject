@@ -1,0 +1,133 @@
+{
+  "timestamp": "2026-11-23T02:03:57.831109+05:30",
+  "machine": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+  "architecture": "arm64",
+  "python_version": "3.14.2",
+  "workflow_files": 19,
+  "repository_count": 7,
+  "total_findings": 1,
+  "category_counts": {
+    "IMPLICIT_ENV_READ": 1
+  },
+  "sum_of_per_file_timings_ms": 63.424,
+  "wall_clock_total_ms": 63.515,
+  "average_per_file_ms": 3.338,
+  "per_file_results": [
+    {
+      "file": "actions_checkout__check-dist.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 1.526
+    },
+    {
+      "file": "actions_checkout__codeql-analysis.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 1.598
+    },
+    {
+      "file": "actions_checkout__licensed.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 0.539
+    },
+    {
+      "file": "actions_checkout__test.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 9.657
+    },
+    {
+      "file": "actions_upload-artifact__codeql-analysis.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 0.96
+    },
+    {
+      "file": "actions_upload-artifact__test.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 8.246
+    },
+    {
+      "file": "pytest-dev_pytest__deploy.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 3.512
+    },
+    {
+      "file": "pytest-dev_pytest__test.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 7.738
+    },
+    {
+      "file": "sveltejs_svelte__ci.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 3.659
+    },
+    {
+      "file": "sveltejs_svelte__release.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 1.513
+    },
+    {
+      "file": "tiangolo_fastapi__publish.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 1.03
+    },
+    {
+      "file": "tiangolo_fastapi__smokeshow.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 1.513
+    },
+    {
+      "file": "tiangolo_fastapi__test.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 8.901
+    },
+    {
+      "file": "vitejs_vite__ci.yml",
+      "findings": 1,
+      "categories": [
+        "IMPLICIT_ENV_READ"
+      ],
+      "elapsed_ms": 4.598
+    },
+    {
+      "file": "vuejs_core__autofix.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 0.977
+    },
+    {
+      "file": "vuejs_core__ci.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 1.234
+    },
+    {
+      "file": "vuejs_core__ecosystem-ci-trigger.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 1.473
+    },
+    {
+      "file": "vuejs_core__release.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 1.44
+    },
+    {
+      "file": "vuejs_core__test.yml",
+      "findings": 0,
+      "categories": [],
+      "elapsed_ms": 3.31
+    }
+  ]
+}

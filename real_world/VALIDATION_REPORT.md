@@ -110,3 +110,52 @@ register).
   regression-tested.
 - One edge case remains, is understood, and is explicitly scoped as future
   work rather than silently ignored.
+
+---
+
+## Supplementary Mac Benchmark (Post-Fix)
+
+A supplementary benchmark was executed on the final local Mac environment
+using `real_world/run_corpus_mac.py`.
+
+### Machine configuration
+
+| Component | Configuration |
+|---|---|
+| Computer | MacBook Air (Mac15,12) |
+| Processor | Apple M3 |
+| CPU cores | 8 (4 performance, 4 efficiency) |
+| Memory | 16 GB |
+| Architecture | ARM64 |
+| Operating system | macOS 27.2.1 |
+| Python | 3.14.2 |
+
+### Benchmark results
+
+| Metric | Measured result |
+|---|---:|
+| Workflow files analyzed | 19 |
+| Open-source repositories | 7 |
+| Total findings | 1 |
+| Sum of per-file timings | 63.424 ms |
+| Wall-clock total | 63.515 ms |
+| Average per file | 3.338 ms |
+
+The benchmark processed all 19 workflow files and reported one
+`IMPLICIT_ENV_READ` finding in the Vite workflow.
+
+These figures represent one supplementary post-fix benchmark run on the
+MacBook Air. They are not repeated-trial averages and are not presented
+as replacements for the historical Round 1 and Round 2 measurements.
+
+### Raw timing evidence
+
+The benchmark script is `real_world/run_corpus_mac.py`.
+Its machine-specific results, including individual file timings, are saved
+in `real_world/mac_benchmark_results.json`.
+
+The previously retained `real_world/per_file_summary.json` contains
+19 individual timings totaling 174.02 ms (average 9.16 ms per file).
+These do not reproduce the historical timing figures above. Therefore,
+the historical Round 1 and Round 2 timing figures should be treated as
+previously reported results, not independently verified by that file.
