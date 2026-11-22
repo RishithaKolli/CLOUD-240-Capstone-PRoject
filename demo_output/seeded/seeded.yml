@@ -1,0 +1,97 @@
+name: Seeded Issues Workflow
+'on':
+- push
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - id: setup
+      name: Set build id
+      run: 'echo "BUILD_ID=xyz123" >> $GITHUB_ENV
+
+        '
+    - name: Use build id
+      run: 'echo "Using build $BUILD_ID"
+
+        '
+    - name: Leak-prone step
+      run: 'echo "Secret: $API_TOKEN"
+
+        '
+    - name: Reference missing step
+      run: 'echo "${{ steps.missing_step.outputs.value }}"
+
+        '
+    - name: Write shared file
+      run: 'mkdir -p shared
+
+        echo "shared data" > shared/data.txt
+
+        '
+    - name: '[SEEDED] export variable'
+      id: seeded_setup
+      shell: bash
+      run: echo "SEEDED_BUILD_ID=abc123" >> $GITHUB_ENV
+    - name: '[SEEDED] read exported variable'
+      shell: bash
+      run: echo "build $SEEDED_BUILD_ID"
+    - name: '[SEEDED] reference missing step'
+      shell: bash
+      run: echo "${{ steps.seeded_missing.outputs.value }}"
+    - name: '[SEEDED] undeclared variable'
+      shell: bash
+      run: echo "key $SEEDED_SECRET_KEY"
+    - name: '[SEEDED] write shared file'
+      shell: bash
+      run: echo data > seeded_shared.txt
+  test:
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+    - name: Read shared file
+      run: 'cat shared/data.txt
+
+        '
+    - name: Another undeclared read
+      run: 'echo "Secret: $SECRET_KEY"
+
+        '
+    - name: Typo'd step reference
+      run: 'echo "${{ steps.typo_id.outputs.path }}"
+
+        '
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Report upstream output
+      run: 'echo "${{ needs.prepare.outputs.something }}"
+
+        '
+  release:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - id: tag
+      name: Compute tag
+      run: 'echo "TAG=v1.0.0" >> $GITHUB_ENV
+
+        '
+    - name: Announce release
+      run: 'echo "Releasing $TAG"
+
+        '
+    - name: Deploy
+      run: 'echo "Deploy key: $DEPLOY_KEY"
+
+        '
+  seeded_consumer:
+    runs-on: ubuntu-latest
+    steps:
+    - name: '[SEEDED] read file from another job'
+      shell: bash
+      run: cat seeded_shared.txt
+    - name: '[SEEDED] read output of undeclared needs'
+      shell: bash
+      run: echo "${{ needs.prepare.outputs.result }}"

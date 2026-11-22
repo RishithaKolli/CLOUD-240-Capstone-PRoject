@@ -1,0 +1,87 @@
+name: Seeded Issues Workflow
+# This workflow intentionally contains 9 hidden-coupling issues, one or more
+# from each of the 5 finding categories, used to validate completeness.
+
+on: [push]
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - id: setup
+        name: Set build id
+        run: |
+          echo "BUILD_ID=xyz123" >> $GITHUB_ENV
+
+      # Seed 1: ENV_MUTATION -- reads BUILD_ID set implicitly by 'setup'
+      - name: Use build id
+        run: |
+          echo "Using build $BUILD_ID"
+
+      # Seed 2: IMPLICIT_ENV_READ -- API_TOKEN never declared anywhere
+      - name: Leak-prone step
+        run: |
+          echo "Secret: $API_TOKEN"
+
+      # Seed 3: DANGLING_OUTPUT -- 'missing_step' does not exist in this job
+      - name: Reference missing step
+        run: |
+          echo "${{ steps.missing_step.outputs.value }}"
+
+      # Contributes to Seed 4 (SHARED_WORKDIR_WRITE, matched with 'test' job below)
+      - name: Write shared file
+        run: |
+          mkdir -p shared
+          echo "shared data" > shared/data.txt
+
+  test:
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      # Seed 4: SHARED_WORKDIR_WRITE -- reads a file written by 'prepare', no
+      # upload-artifact/download-artifact used anywhere in this workflow
+      - name: Read shared file
+        run: |
+          cat shared/data.txt
+
+      # Seed 5: IMPLICIT_ENV_READ -- SECRET_KEY never declared anywhere
+      - name: Another undeclared read
+        run: |
+          echo "Secret: $SECRET_KEY"
+
+      # Seed 6: DANGLING_OUTPUT -- 'typo_id' does not exist in this job
+      - name: Typo'd step reference
+        run: |
+          echo "${{ steps.typo_id.outputs.path }}"
+
+  deploy:
+    runs-on: ubuntu-latest
+    # Note: no `needs:` declared here at all
+    steps:
+      # Seed 7: UNDECLARED_NEEDS -- references needs.prepare without declaring
+      # 'prepare' in this job's needs: list
+      - name: Report upstream output
+        run: |
+          echo "${{ needs.prepare.outputs.something }}"
+
+  release:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - id: tag
+        name: Compute tag
+        run: |
+          echo "TAG=v1.0.0" >> $GITHUB_ENV
+
+      # Seed 8: ENV_MUTATION -- reads TAG set implicitly by 'tag'
+      - name: Announce release
+        run: |
+          echo "Releasing $TAG"
+
+      # Seed 9: IMPLICIT_ENV_READ -- DEPLOY_KEY never declared anywhere
+      - name: Deploy
+        run: |
+          echo "Deploy key: $DEPLOY_KEY"

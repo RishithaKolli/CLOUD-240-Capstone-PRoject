@@ -1,0 +1,118 @@
+[
+  {
+    "file": "actions_checkout__check-dist.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 2.93
+  },
+  {
+    "file": "actions_checkout__codeql-analysis.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 3.33
+  },
+  {
+    "file": "actions_checkout__licensed.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 1.05
+  },
+  {
+    "file": "actions_checkout__test.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 19.8
+  },
+  {
+    "file": "actions_upload-artifact__codeql-analysis.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 1.99
+  },
+  {
+    "file": "actions_upload-artifact__test.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 19.37
+  },
+  {
+    "file": "pytest-dev_pytest__deploy.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 8.39
+  },
+  {
+    "file": "pytest-dev_pytest__test.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 16.58
+  },
+  {
+    "file": "sveltejs_svelte__ci.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 7.78
+  },
+  {
+    "file": "sveltejs_svelte__release.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 3.31
+  },
+  {
+    "file": "tiangolo_fastapi__publish.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 2.38
+  },
+  {
+    "file": "tiangolo_fastapi__smokeshow.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 3.41
+  },
+  {
+    "file": "tiangolo_fastapi__test.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 43.86
+  },
+  {
+    "file": "vitejs_vite__ci.yml",
+    "findings": 1,
+    "categories": [
+      "IMPLICIT_ENV_READ"
+    ],
+    "elapsed_ms": 19.2
+  },
+  {
+    "file": "vuejs_core__autofix.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 2.68
+  },
+  {
+    "file": "vuejs_core__ci.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 2.94
+  },
+  {
+    "file": "vuejs_core__ecosystem-ci-trigger.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 3.84
+  },
+  {
+    "file": "vuejs_core__release.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 3.13
+  },
+  {
+    "file": "vuejs_core__test.yml",
+    "findings": 0,
+    "categories": [],
+    "elapsed_ms": 8.05
+  }
+]

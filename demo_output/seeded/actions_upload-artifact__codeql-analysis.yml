@@ -1,0 +1,46 @@
+name: Code scanning - action
+'on':
+  push:
+    branches-ignore: dependabot/**
+  pull_request:
+    paths-ignore:
+    - '**.md'
+  schedule:
+  - cron: 0 6 * * 3
+jobs:
+  CodeQL-Build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v3
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+    - name: '[SEEDED] export variable'
+      id: seeded_setup
+      shell: bash
+      run: echo "SEEDED_BUILD_ID=abc123" >> $GITHUB_ENV
+    - name: '[SEEDED] read exported variable'
+      shell: bash
+      run: echo "build $SEEDED_BUILD_ID"
+    - name: '[SEEDED] reference missing step'
+      shell: bash
+      run: echo "${{ steps.seeded_missing.outputs.value }}"
+    - name: '[SEEDED] undeclared variable'
+      shell: bash
+      run: echo "key $SEEDED_SECRET_KEY"
+    - name: '[SEEDED] write shared file'
+      shell: bash
+      run: echo data > seeded_shared.txt
+  seeded_consumer:
+    runs-on: ubuntu-latest
+    steps:
+    - name: '[SEEDED] read file from another job'
+      shell: bash
+      run: cat seeded_shared.txt
+    - name: '[SEEDED] read output of undeclared needs'
+      shell: bash
+      run: echo "${{ needs.CodeQL-Build.outputs.result }}"

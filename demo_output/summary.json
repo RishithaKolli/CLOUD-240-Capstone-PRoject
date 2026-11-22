@@ -1,0 +1,303 @@
+[
+  {
+    "file": "clean.yml",
+    "original": 0,
+    "seeded": 4,
+    "cleaned": 0,
+    "caught": 4,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "seeded.yml",
+    "original": 9,
+    "seeded": 14,
+    "cleaned": 9,
+    "caught": 5,
+    "new_categories": [],
+    "note": ""
+  },
+  {
+    "file": "actions_checkout__check-dist.yml",
+    "original": 0,
+    "seeded": 4,
+    "cleaned": 0,
+    "caught": 4,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "actions_checkout__codeql-analysis.yml",
+    "original": 0,
+    "seeded": 5,
+    "cleaned": 0,
+    "caught": 5,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "SHARED_WORKDIR_WRITE",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "actions_checkout__licensed.yml",
+    "original": 0,
+    "seeded": 5,
+    "cleaned": 0,
+    "caught": 5,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "SHARED_WORKDIR_WRITE",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "actions_checkout__test.yml",
+    "original": 0,
+    "seeded": 5,
+    "cleaned": 0,
+    "caught": 5,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "SHARED_WORKDIR_WRITE",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "actions_upload-artifact__codeql-analysis.yml",
+    "original": 0,
+    "seeded": 5,
+    "cleaned": 0,
+    "caught": 5,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "SHARED_WORKDIR_WRITE",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "actions_upload-artifact__test.yml",
+    "original": 0,
+    "seeded": 4,
+    "cleaned": 0,
+    "caught": 4,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "pytest-dev_pytest__deploy.yml",
+    "original": 0,
+    "seeded": 4,
+    "cleaned": 0,
+    "caught": 4,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "pytest-dev_pytest__test.yml",
+    "original": 0,
+    "seeded": 4,
+    "cleaned": 0,
+    "caught": 4,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "sveltejs_svelte__ci.yml",
+    "original": 0,
+    "seeded": 5,
+    "cleaned": 0,
+    "caught": 5,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "SHARED_WORKDIR_WRITE",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "sveltejs_svelte__release.yml",
+    "original": 0,
+    "seeded": 5,
+    "cleaned": 0,
+    "caught": 5,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "SHARED_WORKDIR_WRITE",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "tiangolo_fastapi__publish.yml",
+    "original": 0,
+    "seeded": 5,
+    "cleaned": 0,
+    "caught": 5,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "SHARED_WORKDIR_WRITE",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "tiangolo_fastapi__smokeshow.yml",
+    "original": 0,
+    "seeded": 4,
+    "cleaned": 0,
+    "caught": 4,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "tiangolo_fastapi__test.yml",
+    "original": 0,
+    "seeded": 4,
+    "cleaned": 0,
+    "caught": 4,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "vitejs_vite__ci.yml",
+    "original": 1,
+    "seeded": 6,
+    "cleaned": 1,
+    "caught": 5,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "SHARED_WORKDIR_WRITE",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "vuejs_core__autofix.yml",
+    "original": 0,
+    "seeded": 5,
+    "cleaned": 0,
+    "caught": 5,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "SHARED_WORKDIR_WRITE",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "vuejs_core__ci.yml",
+    "original": 0,
+    "seeded": 5,
+    "cleaned": 0,
+    "caught": 5,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "SHARED_WORKDIR_WRITE",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "vuejs_core__ecosystem-ci-trigger.yml",
+    "original": 0,
+    "seeded": 5,
+    "cleaned": 0,
+    "caught": 5,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "SHARED_WORKDIR_WRITE",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "vuejs_core__release.yml",
+    "original": 0,
+    "seeded": 5,
+    "cleaned": 0,
+    "caught": 5,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "SHARED_WORKDIR_WRITE",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  },
+  {
+    "file": "vuejs_core__test.yml",
+    "original": 0,
+    "seeded": 5,
+    "cleaned": 0,
+    "caught": 5,
+    "new_categories": [
+      "DANGLING_OUTPUT",
+      "ENV_MUTATION",
+      "IMPLICIT_ENV_READ",
+      "SHARED_WORKDIR_WRITE",
+      "UNDECLARED_NEEDS"
+    ],
+    "note": ""
+  }
+]

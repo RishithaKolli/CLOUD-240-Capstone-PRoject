@@ -1,0 +1,38 @@
+name: ecosystem-ci trigger
+'on':
+  issue_comment:
+    types:
+    - created
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+jobs:
+  trigger:
+    runs-on: ubuntu-slim
+    if: github.repository == 'vuejs/core' && github.event.issue.pull_request && startsWith(github.event.comment.body, '/ecosystem-ci run')
+    steps:
+    - name: Check user permission
+      uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+      with:
+        script: "const user = context.payload.sender.login\nconsole.log(`Validate user: ${user}`)\n\nlet isVuejsMember = false\ntry {\n  const { status } = await github.rest.orgs.checkMembershipForUser({\n\
+          \    org: 'vuejs',\n    username: user\n  });\n\n  isVuejsMember = (status === 204)\n} catch (e) {}\n\nif (isVuejsMember) {\n  console.log('Allowed')\n  await github.rest.reactions.createForIssueComment({\n\
+          \    owner: context.repo.owner,\n    repo: context.repo.repo,\n    comment_id: context.payload.comment.id,\n    content: '+1',\n  })\n} else {\n  console.log('Not allowed')\n  await github.rest.reactions.createForIssueComment({\n\
+          \    owner: context.repo.owner,\n    repo: context.repo.repo,\n    comment_id: context.payload.comment.id,\n    content: '-1',\n  })\n  throw new Error('not allowed')\n}\n"
+    - name: Get PR info
+      uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+      id: get-pr-data
+      with:
+        script: "console.log(`Get PR info: ${context.repo.owner}/${context.repo.repo}#${context.issue.number}`)\nconst { data: pr } = await github.rest.pulls.get({\n  owner: context.repo.owner,\n  repo:\
+          \ context.repo.repo,\n  pull_number: context.issue.number\n})\nreturn {\n  num: context.issue.number,\n  branchName: pr.head.ref,\n  repo: pr.head.repo.full_name,\n  commit: pr.head.sha\n}\n"
+    - name: Trigger run
+      uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+      id: trigger
+      env:
+        COMMENT: ${{ github.event.comment.body }}
+      with:
+        github-token: ${{ secrets.ECOSYSTEM_CI_ACCESS_TOKEN }}
+        result-encoding: string
+        script: "const comment = process.env.COMMENT.trim()\nconst prData = ${{ steps.get-pr-data.outputs.result }}\n\nconst suite = comment.replace(/^\\/ecosystem-ci run/, '').trim()\n\nawait github.rest.actions.createWorkflowDispatch({\n\
+          \  owner: context.repo.owner,\n  repo: 'ecosystem-ci',\n  workflow_id: 'ecosystem-ci-from-pr.yml',\n  ref: 'main',\n  inputs: {\n    prNumber: '' + prData.num,\n    branchName: prData.branchName,\n\
+          \    repo: prData.repo,\n    suite: suite === '' ? '-' : suite,\n    commit: prData.commit\n  }\n})\n"

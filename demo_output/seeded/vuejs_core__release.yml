@@ -1,0 +1,75 @@
+name: Release
+'on':
+  push:
+    tags:
+    - v*
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+  release:
+    if: github.repository == 'vuejs/core'
+    needs:
+    - test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    environment: Release
+    steps:
+    - name: Checkout
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - name: Install pnpm
+      uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413
+    - name: Install Node.js
+      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+      with:
+        node-version-file: .node-version
+        registry-url: https://registry.npmjs.org
+    - name: Install deps
+      run: pnpm install --frozen-lockfile
+    - name: Update npm
+      run: npm i -g npm@latest
+    - name: Build and publish
+      id: publish
+      run: 'pnpm release --publishOnly
+
+        '
+    - name: Create GitHub release
+      id: release_tag
+      uses: yyx990803/release-tag@8cccf7c5aa332d71d222df46677f70f77a8d2dc0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        body: 'For stable releases, please refer to [CHANGELOG.md](https://github.com/vuejs/core/blob/main/CHANGELOG.md) for details.
+
+          For pre-releases, please refer to [CHANGELOG.md](https://github.com/vuejs/core/blob/minor/CHANGELOG.md) of the `minor` branch.
+
+          '
+    - name: '[SEEDED] export variable'
+      id: seeded_setup
+      shell: bash
+      run: echo "SEEDED_BUILD_ID=abc123" >> $GITHUB_ENV
+    - name: '[SEEDED] read exported variable'
+      shell: bash
+      run: echo "build $SEEDED_BUILD_ID"
+    - name: '[SEEDED] reference missing step'
+      shell: bash
+      run: echo "${{ steps.seeded_missing.outputs.value }}"
+    - name: '[SEEDED] undeclared variable'
+      shell: bash
+      run: echo "key $SEEDED_SECRET_KEY"
+    - name: '[SEEDED] write shared file'
+      shell: bash
+      run: echo data > seeded_shared.txt
+  seeded_consumer:
+    runs-on: ubuntu-latest
+    steps:
+    - name: '[SEEDED] read file from another job'
+      shell: bash
+      run: cat seeded_shared.txt
+    - name: '[SEEDED] read output of undeclared needs'
+      shell: bash
+      run: echo "${{ needs.release.outputs.result }}"

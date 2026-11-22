@@ -1,0 +1,11 @@
+[
+  {
+    "severity": "LOW",
+    "category": "IMPLICIT_ENV_READ",
+    "workflow": "/home/claude/project/real_world/downloaded/vitejs_vite__ci.yml",
+    "job": "test",
+    "step": "(windows) Set Playwright path and Get playwright version",
+    "message": "undeclared variable 'env' referenced with no visible declaration in env:, a prior $GITHUB_ENV write, or a local assignment",
+    "suggestion": "declare 'env' explicitly under `env:` for this step or job"
+  }
+]
