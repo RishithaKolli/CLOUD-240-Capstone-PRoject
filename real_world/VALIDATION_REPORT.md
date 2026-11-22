@@ -10,7 +10,7 @@ going beyond the synthetic clean/seeded test workflows used for Review 1.
 ## Methodology
 
 - **Corpus**: 19 real `.github/workflows/*.yml` files pulled directly from
-  8 popular open-source repositories on GitHub (not written by us):
+  7 popular open-source repositories on GitHub (not written by us):
   `actions/checkout`, `actions/upload-artifact`, `pytest-dev/pytest`,
   `sveltejs/svelte`, `tiangolo/fastapi`, `vitejs/vite`, `vuejs/core`.
 - **Procedure**: ran the detector, unmodified, against every file with no
